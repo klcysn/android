@@ -1,12 +1,12 @@
 import React from "react";
 import {View, Image, Text, StyleSheet, Dimensions} from "react-native"
 
-const DealsOfDay = ()=> {
+const DealOfDay = ()=> {
 
     return(
         <View style = {styles.container}>
             <Text style ={{fontSize : 25, marginBottom : 15}}>Deal of the day</Text>
-            <Image source = {require("../assets/Dealofday.jpg")} style ={styles.image}/>
+            <Image source = {{uri : "https://m.media-amazon.com/images/I/31I+eKei2oL._AC_SY200_.jpg"}} style ={styles.image}/>
             <Text>Save on ArtLife and more</Text>
             <Text>Price: €292.46</Text>
             <Text style ={{color : "blue", marginTop : 15}}>See all deals</Text>
@@ -15,7 +15,7 @@ const DealsOfDay = ()=> {
 }
 const styles = StyleSheet.create({
     image : {
-        width : Dimensions.get("window").width,
+        width : Dimensions.get("window").width* 0.9,
         height : Dimensions.get("window").height * 0.2
     },
     container : {
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export {DealsOfDay};
+export {DealOfDay};

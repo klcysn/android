@@ -9,14 +9,15 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import {TopSection, MainList, Location, DealsOfDay, Banner} from "./components"
+import {TopSection, MainList, Location, DealOfDay, Banner, Cards} from "./components"
+
 
 const App = () => {
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style = {{marginBottom : 105}}>
       <TopSection />
-        <ScrollView>
+        <ScrollView bounces = {false} showsVerticalScrollIndicator ={false}>
           <MainList />
           <Location />
           <Image source = {require("./assets/deals.jpg")} style = {styles.image} />
@@ -27,10 +28,11 @@ const App = () => {
             </TouchableOpacity>
             <Text style ={{alignSelf : "flex-start", margin : 13, color : "blue"}}>Create an account</Text>
           </View>
-          <DealsOfDay />
+          <DealOfDay />
           <Banner/>
+          <Cards />
         </ScrollView>
-      
+        
     </SafeAreaView>
     
   );

@@ -23,6 +23,7 @@ const SearchBar = () => {
       <TextInput placeholder = {!focused ? "What are you looking for ?" : "Search"}
       style ={{fontSize : 18, marginLeft : 10}}
       onFocus = {()=>{setFocused(true)}}
+      onBlur = {()=>{setFocused(false)}}
       
       />
       </View>
