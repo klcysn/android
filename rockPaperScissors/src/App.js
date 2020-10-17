@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
   Dimensions,
   TouchableOpacity,
   Alert
@@ -15,54 +14,69 @@ import { MyButton, Roll, ScoreScreen } from './components';
 
 const App = () => {
   const [num, setNum] = useState(0)
-  const list = [require("./components/assets/1.png"), require("./components/assets/2.png"), require("./components/assets/3.png")]
-  const [userSelect, setUserSelect] = useState("4")
-  console.log(userSelect == "" ? "bos" : userSelect )
+  const [userSelect, setUserSelect] = useState(3)
   const [plays, setPlays] = useState("")
   const [userScore, setUserScore] = useState(0)
   const [computerScore, setComputerScore] = useState(0)
+  const [scoreText, setScoreText] = useState("")
 
   useEffect(()=>{
     setPlays(clearTimeout(plays))
 
     if(userSelect == 0 && num == 1){
-      Alert.alert("You lost!", "Paper wraps rock", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("You lost!\n Paper wraps rock")
       setComputerScore(computerScore + 1)
     }else if(userSelect == 0 && num == 2){
-      Alert.alert("You Won!", "Rock crushs scissors", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("You Won!\n Rock crushs scissors")
       setUserScore(userScore + 1)
     }else if(userSelect == 0 && num == 0){
-      Alert.alert("Draw", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("Draw")
     }else if(userSelect == 1 && num == 0){
-      Alert.alert("You Won!", "Paper wraps rock", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("You Won!\nPaper wraps rock")
       setUserScore(userScore + 1)
     }else if(userSelect == 1 && num == 1){
-      Alert.alert("Draw", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("Draw")
     }else if(userSelect == 1 && num == 2){
-      Alert.alert("You lost!", "Scissors cuts paper", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("You lost!\nScissors cuts paper")
       setComputerScore(computerScore + 1)
     }else if(userSelect == 2 && num == 0){
-      Alert.alert("You lost!", "Rock crushs scissors", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("You lost!\nRock crushs scissors")
       setComputerScore(computerScore + 1)
     }else if(userSelect == 2 && num == 1){
-      Alert.alert("You Won!", "Scissors cuts paper", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("You Won!\nScissors cuts paper")
       setUserScore(userScore + 1)
     }else if(userSelect == 2 && num == 2){
-      Alert.alert("Draw", [{text : "Continue", onPress : play, style : "cancel"}])
+      setScoreText("Draw")}
+
+    setTimeout(()=>{
+      setUserSelect(3)
+      setScoreText("")
+    }, 2000)
+
+    if(userScore == 3 || computerScore ==3){
+      Alert.alert(`${userScore > computerScore ? "You" : "Computer"} Won`,"",[{text :"Play again!", onPress : reset}])
     }
   }, [userSelect])
+
+  const reset = ()=>{
+    setScoreText("")
+    setUserScore(0)
+    setComputerScore(0)
+    setUserSelect(3)
+    setNum(0)
+}
   
   const play = () => {
+    
     setNum(Math.floor(Math.random() * 3))
-    console.log("play userselect", userSelect)
-    setPlays(setTimeout(play, 100))
-    setUserSelect("4")
+    setPlays(setTimeout(play, 180))
   }
   return (
     <SafeAreaView style = {styles.container}>
       <ScoreScreen computerScore ={computerScore} userScore ={userScore}/>
+      <Text style={{fontSize : 30,color : "#313409",fontWeight : "bold",fontFamily : "monospace", flex : 0.15, marginLeft : 10}}>{scoreText}</Text>
       <View style ={{flex : 1, marginTop : 30}}>
-      <Roll roll ={num} selected = {userSelect} />
+      <Roll roll ={num} selected = {userSelect} scoreText ={scoreText} />
       <MyButton sendValue = {(value)=> setUserSelect(value)} />
       </View>
       <TouchableOpacity style = {styles.play} onPress={play}>

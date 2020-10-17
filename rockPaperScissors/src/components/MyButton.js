@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {TouchableOpacity, Image,StyleSheet, Dimensions, View} from "react-native"
 
 
@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
         height : Dimensions.get("window").height * 0.14,
       },
       containerButton : {
-        flex : 1,
+        flex : 0.5,
         flexDirection : "row",
         justifyContent : "center",
         marginLeft : 15,
-        marginTop : 10
+        
       }
 })
 

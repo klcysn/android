@@ -1,21 +1,19 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   Image,
-  Dimensions,
-  Button,
+  Dimensions
 } from 'react-native';
 
 const Roll = ({roll, selected})=>{
-    const list = [require("./assets/1.png"), require("./assets/2.png"), require("./assets/3.png")]
-   
+    const list = [require("./assets/1.png"), require("./assets/2.png"), require("./assets/3.png"), require("./assets/4.gif")]
+
     return(
-        <View style = {{flex :1}}>
+        <View style = {{flex :1.2}}>
+            
             <View style ={styles.containerRoll}>
                 <Image style = {styles.image} source = {list[selected]} />
                 <Image style = {styles.image} source = {list[roll]} />
@@ -37,7 +35,7 @@ const styles = StyleSheet.create({
         flex : 1,
         flexDirection : "row",
         justifyContent : "space-around",
-        marginTop : 5
+      
     },
     text : {
         fontSize : 30,
