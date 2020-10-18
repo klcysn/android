@@ -69,7 +69,7 @@ const App = () => {
   const play = () => {
     
     setNum(Math.floor(Math.random() * 3))
-    setPlays(setTimeout(play, 180))
+    setPlays(setTimeout(play, 200))
   }
   return (
     <SafeAreaView style = {styles.container}>
