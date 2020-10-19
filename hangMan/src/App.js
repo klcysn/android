@@ -52,6 +52,17 @@ const App = () => {
     if(selectedWord.includes(letter)){
       newKnown.push(letter)
       setKnownWord(newKnown)
+      if(newKnown.length ==selectedWord.length - 1){Alert.alert("You Won!\nLet's play again", "You saved man", 
+      [{
+        text : "Play Again",
+        onPress : ()=> {
+          setI(Math.floor(Math.random() * 21)),
+          setCount(0)
+          setKnownWord([])
+          setWrongWord([])
+        }
+         }]
+      )}
     }else{
       newWrong.push(letter)
       setWrongWord(newWrong)
@@ -88,7 +99,7 @@ const App = () => {
         </View>
         <View style = {styles.manContainer}>
           <Image source ={imageList[count]} style={styles.man} />
-          <View >
+          <View style ={{opacity : wrongWord.length == 0 ? 0 : 1}}>
             <Text style = {styles.wrongWord}>Wrong Words</Text>
             <Text style = {styles.wrongWord}>{wrongWord.join(", ")}</Text>
           </View>
