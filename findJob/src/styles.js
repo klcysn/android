@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native"
+import {Dimensions, StyleSheet} from "react-native"
 
 export const topicItem = StyleSheet.create({
     container : {
@@ -9,5 +9,17 @@ export const topicItem = StyleSheet.create({
     text : {
         fontWeight : "bold",
         color : "white"
+    }
+})
+
+export const introduction=StyleSheet.create({
+    banner : {
+        height : Dimensions.get("window").height / 3,
+        justifyContent : "center",
+        alignItems : "center"
+    },
+    text: {
+        fontSize : 25,
+        fontWeight : "bold"
     }
 })
