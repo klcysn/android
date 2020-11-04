@@ -1,34 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from "../component"
+import {Button, Modal} from "../component"
 import {SafeAreaView, Text,Platform, Image,TouchableOpacity, View} from "react-native"
 import styles from "../styles"
 import {useDispatch, useSelector} from "react-redux"
 import axios from "axios"
 
-
-
-
-
 export const Statistics =(props)=>{
+
     const date = useSelector(state=>state.date)
     const country = useSelector(state=>state.country)
-    const [data, setData]=useState({
-        value: 100,
-        label: 'Template',
-        color: 'red',
-      }, )
+    console.log(country, date)
+    const [data, setData]=useState({total : 0, active : 0, critical : 0, recovered : 0})
     const fetchData = async ()=>{
         const response = await axios({
             method: 'GET',
             url: 'https://rapidapi.p.rapidapi.com/history',
-            params: {country: "Turkey", day: "2020-11-03"},
+            params: {country: country, day: date},
             headers: {
               'x-rapidapi-key': '249c7f5415msh85ea684a8ffaeadp112026jsn8e8bcb1ec492',
               'x-rapidapi-host': 'covid-193.p.rapidapi.com'
             }
           })
           setData(response.data.response[0].cases)
-          console.log(response.data.response[0].cases)
+          console.log(response.data.response[0])
           
     }
 
@@ -40,38 +34,36 @@ export const Statistics =(props)=>{
       
     return(
         <SafeAreaView style={{flex : 1, padding : 10}}>
-          
+          <Text style={styles.statisticsCountry}>{country}</Text>
           <View
-          style={{width : `${data.recovered*100/data.total}%`,
-          backgroundColor : "red",
-          padding:10,
-          borderRadius : 30,
-          marginBottom : 10 }}>
-            <Text style={{color : "white", fontSize : 10, fontWeight : "bold", textAlign:"center"}}>Recovered : {Math.floor(data.recovered*100/data.total)}%</Text>
+          style={[styles.statisticsCard, {width : "100%", backgroundColor : "#9b0000"}]}>
+            <Text style={styles.statisticsText}>Recovered : {(data.recovered*100/data.total).toFixed(3)}%</Text>
           </View>
-          <View
-          style={{width : `${data.active*350/data.total}%`,
-          backgroundColor : "red",
-          padding:10,
-          borderRadius : 30,
-          marginBottom : 10 }}>
-            <Text style={{color : "white", fontSize : 10, fontWeight : "bold", textAlign:"center"}}>Active : {Math.floor(data.active*100/data.total)}%</Text>
+            <View style={{flexDirection :"row", justifyContent : "space-between"}}>
+              <View style={{width : "25%"}}>
+                <View
+                style={[styles.statisticsCard, {width : "100%", backgroundColor : "#7f0000"}]}>
+                  <Text style={styles.statisticsText}>Active : {(data.active*100/data.total).toFixed(3)}%</Text>
+                </View>
+                <View
+                style={[styles.statisticsCard, {width : "100%", backgroundColor : "#d50000"}]}>
+                  <Text style={styles.statisticsText}>Critical : {(data.critical*100/data.total).toFixed(3)}%</Text>
+                </View>
+                <View
+                style={[styles.statisticsCard, {width : "100%", backgroundColor:"#c50e29"}]}>
+                  <Text style={styles.statisticsText}>New : {(data.new*100/data.total).toFixed(3)}%</Text>
+                </View>
+              </View>
+              <View style={styles.nuberContainer}>
+              <Text style={styles.statisticsNumber}>Total : {data.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.statisticsNumber}>Recovered : {data.recovered}</Text>
+              <Text style={styles.statisticsNumber}>Active : {data.active}</Text>
+              <Text style={styles.statisticsNumber}>critical : {data.critical}</Text>
+              <Text style={styles.statisticsNumber}>New : {data.new}</Text>
+              </View>
           </View>
-          <View
-          style={{width : `${data.critical*3500/data.total}%`,
-          backgroundColor : "red",
-          padding:10,
-          borderRadius : 30,
-          marginBottom : 10 }}>
-            <Text style={{color : "white", fontSize : 10, fontWeight : "bold", textAlign:"center"}}>Critical : {Math.round(data.critical*100/data.total)}%</Text>
-          </View>
-          <View
-          style={{width : `${data.new*3500/data.total}%`,
-          backgroundColor : "red",
-          padding:10,
-          borderRadius : 30,
-          marginBottom : 10 }}>
-            <Text style={{color : "white", fontSize : 10, fontWeight : "bold", textAlign:"center"}}>New : {Math.round(data.new*100/data.total)}%</Text>
+          <View style={{alignItems : "center"}}>
+            <Button name="Select Country" onPressed={()=>props.navigation.goBack()} />
           </View>
           
         </SafeAreaView>

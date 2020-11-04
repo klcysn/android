@@ -10,8 +10,8 @@ export const Select=(props)=>{
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-    const dateModifiedList = date.toLocaleDateString().split("/")
-    const dateModified = dateModifiedList[2] + "-" + dateModifiedList[0] + "-" + dateModifiedList[1]
+    const dateModifiedList = date.toLocaleDateString().split(".").reverse()
+    const dateModified = dateModifiedList.join("-")
     const dispatch = useDispatch()
 
     const onChange = (event, selectedDate) => {

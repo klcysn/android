@@ -14,7 +14,7 @@ function RouterStack() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions ={{headerShown : false}}>
+        <Stack.Navigator screenOptions ={{headerShown : false}} initialRouteName="Select">
           <Stack.Screen name="Statistics" component={Statistics} />
           <Stack.Screen name="Login" component={LoginPage} />
           <Stack.Screen name="Select" component={Select} />
