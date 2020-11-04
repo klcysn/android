@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux"
 import axios from "axios"
 
 export const Statistics =(props)=>{
+    const [deaths, setDeaths]=useState({new : 0, total : 0})
+    const [test,setTest]= useState({total : 0})
     const dispatch = useDispatch()
     const date = useSelector(state=>state.date)
     const country = useSelector(state=>state.country)
@@ -22,7 +24,9 @@ export const Statistics =(props)=>{
             }
           })
           setData(response.data.response[0].cases)
-          console.log(response.data.response[0])
+          setDeaths(response.data.response[0].deaths)
+          setTest(response.data.response[0].tests)
+          
           
     }
 
@@ -35,6 +39,7 @@ export const Statistics =(props)=>{
     return(
         <SafeAreaView style={{flex : 1, padding : 10}}>
           <Text style={styles.statisticsCountry}>{country}</Text>
+          <Text style={styles.statisticsDate}>Date:{date}</Text>
           <View
           style={[styles.statisticsCard, {width : "100%", backgroundColor : "#9b0000"}]}>
             <Text style={styles.statisticsText}>Recovered : {(data.recovered*100/data.total).toFixed(3)}%</Text>
@@ -56,18 +61,18 @@ export const Statistics =(props)=>{
               </View>
               <View style={styles.nuberContainer}>
               <Text style={styles.statisticsNumber}>Total : {data.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-              <Text style={styles.statisticsNumber}>Recovered : {data.recovered}</Text>
-              <Text style={styles.statisticsNumber}>Active : {data.active}</Text>
+              <Text style={styles.statisticsNumber}>Recovered : {data.recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.statisticsNumber}>Active : {data.active.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
               <Text style={styles.statisticsNumber}>critical : {data.critical}</Text>
               <Text style={styles.statisticsNumber}>New : {data.new}</Text>
               </View>
           </View>
           <View style={{alignItems : "center"}}>
             <Button name="Select Country" onPressed={()=>props.navigation.goBack()} />
-            <Button name="Death Rates" onPressed={()=>dispatch({type:"CHANGEMODAL", payload:true})} />
+            <Button name="Details" onPressed={()=>dispatch({type:"CHANGEMODAL", payload:{show:true}})} />
           </View>
 
-          <ModalComponent />
+          <ModalComponent death={deaths} test={test} />
           
         </SafeAreaView>
     )

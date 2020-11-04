@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native"
+import {Dimensions, StyleSheet} from "react-native"
 
 const styles = StyleSheet.create({
     input : {
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     },
     buttonContainer : {
         backgroundColor : "#80C341",
-        width : "100%",
-        marginVertical : 20,
+        width : "95%",
+        marginVertical : 15,
         padding : 15,
         alignItems : "center",
         borderRadius : 30
@@ -85,18 +85,45 @@ const styles = StyleSheet.create({
         borderRadius : 10,
         marginRight : 30,
         width : "60%",
-        height : "77%"
+        height : Dimensions.get("window").height * 0.28
+        
     },
     statisticsCountry : {
         textAlign : "center",
         padding : 5,
         fontSize : 40,
         fontWeight : "bold",
-        letterSpacing : 20,
+        letterSpacing : 12,
         color : "#9b0000",
         borderBottomWidth : 5,
         marginBottom : 30,
         borderColor : "#9b0000"
+    },
+    statisticsDate :{
+        padding : 5,
+        fontSize : 20,
+        fontWeight : "bold",
+        letterSpacing : 10,
+        color : "#9b0000",
+        borderBottomWidth : 5,
+        marginBottom : 30,
+        borderColor : "#9b0000"
+    },
+    modalContainer : {
+        backgroundColor : "#ffcdd2",
+        padding : 10,
+        borderRadius : 10
+    },
+    modalText:{
+        fontSize: 20,
+        lineHeight : 30,
+        borderBottomWidth : 0.5
+    },
+    deathContainer : {
+        backgroundColor : "#ff5252",
+        padding : 10,
+        borderRadius : 5,
+        marginBottom : 5
     }
 
 })

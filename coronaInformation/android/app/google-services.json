@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "857828733117",
+    "firebase_url": "https://corona-informations.firebaseio.com",
+    "project_id": "corona-informations",
+    "storage_bucket": "corona-informations.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857828733117:android:797495d4234e538dee47d4",
+        "android_client_info": {
+          "package_name": "com.coronainformation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857828733117-ciqqo5dumrkvonf5984sld0uc4gfevp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd3O_9TTeNYvGdMJRbKu18x_dew7-At-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857828733117-ciqqo5dumrkvonf5984sld0uc4gfevp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

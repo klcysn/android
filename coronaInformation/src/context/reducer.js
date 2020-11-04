@@ -8,6 +8,7 @@ export const reducer=(state, action)=>{
             return {...state}
         case "CHANGEMODAL":
             state.show = action.payload.show
+            console.log(state.show)
             return {...state}
         default:
             return state

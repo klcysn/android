@@ -6,14 +6,23 @@ import Modal from 'react-native-modal';
 
 export const ModalComponent=(props)=>{
   const modal = useSelector(state=>state.show)
+  const date = useSelector(state=>state.date)
   const dispatch = useDispatch()
+  console.log(props.death)
   
     return (
-      <View style={{}}>
+      <View>
         <Modal isVisible={modal} onBackdropPress={()=>dispatch({type:"CHANGEMODAL", payload:{show:false}})}>
-          <View style={{}}>
-            <Text>Hello!</Text>
-            <Button title="Close" onPress={()=>dispatch({type:"CHANGEMODAL", payload:{show:false}})} />
+          <View style={styles.modalContainer}>
+            <View style={styles.deathContainer}>
+              <Text style={[styles.modalText, {color : "white"}]}>Deaths on : {date} </Text>
+              <Text style={styles.modalText}>New Deaths : {props.death.new}</Text>
+              <Text style={styles.modalText}>Total Deaths : {props.death.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+            <View style={styles.deathContainer}>
+              <Text style={[styles.modalText, {color : "white"}]}>Tests on : {date} </Text>
+              <Text style={styles.modalText}>Total Tests : {props.test.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
           </View>
         </Modal>
       </View>
