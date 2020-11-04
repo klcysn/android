@@ -9,7 +9,7 @@ export const Statistics =(props)=>{
     const [deaths, setDeaths]=useState({new : 0, total : 0})
     const [test,setTest]= useState({total : 0})
     const dispatch = useDispatch()
-    const date = useSelector(state=>state.date)
+    const {date} = props.route.params
     const country = useSelector(state=>state.country)
     console.log(country, date)
     const [data, setData]=useState({total : 0, active : 0, critical : 0, recovered : 0})
@@ -72,7 +72,7 @@ export const Statistics =(props)=>{
             <Button name="Details" onPressed={()=>dispatch({type:"CHANGEMODAL", payload:{show:true}})} />
           </View>
 
-          <ModalComponent death={deaths} test={test} />
+          <ModalComponent death={deaths} test={test} date={date} />
           
         </SafeAreaView>
     )

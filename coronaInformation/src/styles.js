@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         flex : 1
     },
     loginImage : {
-        width : "50%",
+        width : "58%",
         height : "30%",
         marginVertical : 20
     },

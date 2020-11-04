@@ -8,6 +8,8 @@ export const Input =(props)=>{
         <TextInput
         style={styles.input}
         placeholder = {props.placeholder}
-        onChangeText={(text)=>props.onChange(text)} />
+        keyboardType =  {props.type}
+        secureTextEntry={props.password}
+        onChangeText={(text)=>props.onChanged(text)} />
     )
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from "../component"
 import {SafeAreaView, Text,Platform, Image,TouchableOpacity} from "react-native"
 import styles from "../styles"
@@ -13,6 +13,10 @@ export const Select=(props)=>{
     const dateModifiedList = date.toLocaleDateString().split(".").reverse()
     const dateModified = dateModifiedList.join("-")
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+      onChange()
+    },[])
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -54,7 +58,7 @@ export const Select=(props)=>{
             )}
             <TouchableOpacity
             style={styles.selectButton}
-            onPress={()=>props.navigation.navigate("Statistics")}
+            onPress={()=>props.navigation.navigate("Statistics",{date : dateModified})}
             >
               <Image
               style={[styles.loginImage, {width : "60%", marginTop : 40}]}
