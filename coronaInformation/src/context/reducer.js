@@ -6,6 +6,9 @@ export const reducer=(state, action)=>{
         case "SETDATE" :
             state.date = action.payload.date
             return {...state}
+        case "CHANGEMODAL":
+            state.show = action.payload.show
+            return {...state}
         default:
             return state
     }

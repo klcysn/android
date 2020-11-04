@@ -1,4 +1,5 @@
 export const initialState={
     country : "",
-    date:""
+    date:"",
+    show : false
 }

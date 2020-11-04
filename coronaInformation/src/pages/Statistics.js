@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Modal} from "../component"
+import {Button, ModalComponent} from "../component"
 import {SafeAreaView, Text,Platform, Image,TouchableOpacity, View} from "react-native"
 import styles from "../styles"
 import {useDispatch, useSelector} from "react-redux"
 import axios from "axios"
 
 export const Statistics =(props)=>{
-
+    const dispatch = useDispatch()
     const date = useSelector(state=>state.date)
     const country = useSelector(state=>state.country)
     console.log(country, date)
@@ -64,7 +64,10 @@ export const Statistics =(props)=>{
           </View>
           <View style={{alignItems : "center"}}>
             <Button name="Select Country" onPressed={()=>props.navigation.goBack()} />
+            <Button name="Death Rates" onPressed={()=>dispatch({type:"CHANGEMODAL", payload:true})} />
           </View>
+
+          <ModalComponent />
           
         </SafeAreaView>
     )
