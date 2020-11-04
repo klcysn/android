@@ -19,7 +19,7 @@ export const Countries =(props)=>{
             method: 'GET',
             url: 'https://rapidapi.p.rapidapi.com/countries',
             headers: {
-              'x-rapidapi-key': '249c7f5415msh85ea684a8ffaeadp112026jsn8e8bcb1ec492',
+              'x-rapidapi-key': 'WRITE YOUR API KEY HERE',
               'x-rapidapi-host': 'covid-193.p.rapidapi.com'
             }
           })
