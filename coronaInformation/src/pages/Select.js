@@ -10,8 +10,8 @@ export const Select=(props)=>{
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-    const dateModifiedList = date.toLocaleDateString().split(".").reverse()
-    const dateModified = dateModifiedList.join("-")
+    const dateModifiedList = date.toLocaleDateString().split("/")
+    const dateModified = ["20" + dateModifiedList[2], dateModifiedList[0], dateModifiedList[1]].join("-")
 
     useEffect(()=>{
       onChange()
@@ -57,7 +57,7 @@ export const Select=(props)=>{
             onPress={()=>props.navigation.navigate("Statistics",{date : dateModified})}
             >
               <Image
-              style={[styles.loginImage, {width : "60%", marginTop : 40}]}
+              style={[styles.loginImage, {width : "86%", marginTop : 40}]}
               source={{uri : "https://www.abt.at/wp-content/uploads/2020/05/Sprache-Corona.png"}}/>
             </TouchableOpacity>
         </SafeAreaView>

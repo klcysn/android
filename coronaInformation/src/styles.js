@@ -4,17 +4,17 @@ const styles = StyleSheet.create({
     input : {
         marginHorizontal : 10,
         marginVertical : 5,
-        borderWidth : 0.5,
+        borderBottomWidth : 0.5,
         borderRadius : 10,
         paddingHorizontal : 10,
-        width : "90%",
+        width : Dimensions.get("window").width * 0.7,
         borderColor : "gray"
     },
     buttonContainer : {
         backgroundColor : "#80C341",
-        width : "95%",
+        width : Dimensions.get("window").width * 0.7,
         marginVertical : 15,
-        padding : 15,
+        padding : 2,
         alignItems : "center",
         borderRadius : 30
     },
@@ -24,14 +24,13 @@ const styles = StyleSheet.create({
         fontWeight : "bold"
     },
     loginContainer : {
-        backgroundColor : "white",
         alignItems : "center",
         flex : 1
     },
     loginImage : {
-        width : "58%",
-        height : "30%",
-        marginVertical : 20
+        width : "76%",
+        height : "42%",
+        marginTop : 40
     },
     countryContainer : {
         borderWidth : 0.5,
@@ -133,6 +132,13 @@ const styles = StyleSheet.create({
     shareImage : {
         width : 40,
         height : 40
+    },
+    inputContainer :{
+        backgroundColor : "white",
+        marginTop : 10,
+        padding : 20,
+        borderRadius : 5,
+        alignItems : "center"
     }
 
 })

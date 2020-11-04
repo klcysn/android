@@ -11,7 +11,6 @@ export const Statistics =(props)=>{
     const dispatch = useDispatch()
     const {date} = props.route.params
     const country = useSelector(state=>state.country)
-    console.log(country, date)
     const [data, setData]=useState({total : 0, active : 0, critical : 0, recovered : 0})
     const fetchData = async ()=>{
         const response = await axios({
@@ -33,7 +32,6 @@ export const Statistics =(props)=>{
     useEffect(()=>{
         fetchData()
     },[])
-    console.log(data)
 
     const onShare = async () => {
       try {
