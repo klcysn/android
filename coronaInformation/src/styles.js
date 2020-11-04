@@ -124,6 +124,15 @@ const styles = StyleSheet.create({
         padding : 10,
         borderRadius : 5,
         marginBottom : 5
+    },
+    shareContainer : {
+        position : "absolute",
+        top : 20,
+        right : 20
+    },
+    shareImage : {
+        width : 40,
+        height : 40
     }
 
 })

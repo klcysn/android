@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, ModalComponent} from "../component"
-import {SafeAreaView, Text,Platform, Image,TouchableOpacity, View} from "react-native"
+import {SafeAreaView, Text,Platform, Image,TouchableOpacity, View, Share} from "react-native"
 import styles from "../styles"
 import {useDispatch, useSelector} from "react-redux"
 import axios from "axios"
@@ -34,10 +34,22 @@ export const Statistics =(props)=>{
         fetchData()
     },[])
     console.log(data)
+
+    const onShare = async () => {
+      try {
+        const result = await Share.share({
+          message:
+            `Use corona information app to learn ${country}'s corona informations`,
+        });
+       
+      } catch (error) {
+        alert(error.message);
+      }
+    };
    
       
     return(
-        <SafeAreaView style={{flex : 1, padding : 10}}>
+        <SafeAreaView style={{flex : 1, padding : 10, backgroundColor : "white"}}>
           <Text style={styles.statisticsCountry}>{country}</Text>
           <Text style={styles.statisticsDate}>Date:{date}</Text>
           <View
@@ -73,6 +85,9 @@ export const Statistics =(props)=>{
           </View>
 
           <ModalComponent death={deaths} test={test} date={date} />
+          <TouchableOpacity style={styles.shareContainer} onPress={onShare}>
+            <Image style={styles.shareImage} source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJdx6ae8uItsjBRiUOaQRzV-3s6iP439Gf7Q&usqp=CAU"}} />
+          </TouchableOpacity>
           
         </SafeAreaView>
     )

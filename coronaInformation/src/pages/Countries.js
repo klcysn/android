@@ -49,7 +49,7 @@ export const Countries =(props)=>{
     }
     return(
         <SafeAreaView>
-            <Input placeholder="Search country" onChange={(text)=>filter(text)}/>
+            <Input placeholder="Search country" onChanged={(text)=>filter(text)}/>
             <View>
                 {
                     loading

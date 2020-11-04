@@ -3,10 +3,6 @@ export const reducer=(state, action)=>{
         case  "SETCOUNTRY" : 
             state.country = action.payload.country
             return {...state}
-        case "SETDATE" :
-            state.date = action.payload.date
-            console.log("reducer", state.date)
-            return {...state}
         case "CHANGEMODAL":
             state.show = action.payload.show
             return {...state}

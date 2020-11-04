@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button} from "../component"
 import {SafeAreaView, Text,Platform, Image,TouchableOpacity} from "react-native"
 import styles from "../styles"
-import {useDispatch, useSelector} from "react-redux"
+import {useSelector} from "react-redux"
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export const Select=(props)=>{
@@ -12,7 +12,6 @@ export const Select=(props)=>{
     const [show, setShow] = useState(false);
     const dateModifiedList = date.toLocaleDateString().split(".").reverse()
     const dateModified = dateModifiedList.join("-")
-    const dispatch = useDispatch()
 
     useEffect(()=>{
       onChange()
@@ -40,10 +39,7 @@ export const Select=(props)=>{
             name="Select Country"
             onPressed={()=>props.navigation.navigate("countries")}/>
 
-            <Button name = "Select Date" onPressed={()=>{
-                showDatepicker()
-                dispatch({type : "SETDATE", payload : {date : dateModified}})
-                }} />
+            <Button name = "Select Date" onPressed={showDatepicker}/>
             {show && (
                 <DateTimePicker
                 testID="dateTimePicker"
