@@ -80,7 +80,7 @@ const Jobs = (props) => {
             padding: 5,
             position: 'absolute',
             top: 1,
-            left: 17
+            left: 1
           }}
           onPress={() => props.navigation.navigate("Intro")}
         >
