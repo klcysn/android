@@ -63,7 +63,7 @@ const Introduction = (props) => {
           <Text style={introduction.bannerText}>Select Language you search </Text>
         </View>
 
-        <ScrollView horizontal contentContainerStyle={{alignItems: 'center'}}>
+        <ScrollView horizontal contentContainerStyle={{alignItems: "flex-start"}}>
           {topics.map((t) => {
             return <TopicItem key={t.id} item={t} onSelect={() => selectLanguage(t.name)} />;
           })}

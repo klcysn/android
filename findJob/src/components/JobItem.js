@@ -1,12 +1,12 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, Dimensions} from 'react-native';
 
 import { jobItem } from '../styles';
 
 const JobItem = (props) => {
   return (
       <TouchableOpacity
-        style={jobItem.container}
+        style={[jobItem.container,{width : Dimensions.get("window").width * 0.93}]}
         onPress={props.onSelect}
       >
           <Text style={jobItem.jobname}>{props.job.title}</Text>

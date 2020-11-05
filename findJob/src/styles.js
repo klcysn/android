@@ -2,13 +2,16 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 export const topicItem = StyleSheet.create({
   container: {
-    padding: 12,
+    padding: 80,
     margin: 7,
     borderRadius: 6,
+    width : Dimensions.get("window").width * 0.8
   },
   text: {
     fontWeight: 'bold',
     color: 'white',
+    fontSize : 36,
+    textAlign : "center"
   },
 });
 
@@ -18,7 +21,8 @@ export const jobItem = StyleSheet.create({
       margin: 7,
       borderRadius: 6,
       borderWidth: 1,
-      borderColor: '#bdbdbd'
+      borderColor: '#bdbdbd',
+      width : Dimensions.get("window").width * 0.785
     },
     jobname: {
       fontWeight: 'bold',
@@ -48,6 +52,8 @@ export const jobs = StyleSheet.create({
     fontWeight: 'bold'
   },
   jobDesc: {
-    padding: 5
+    padding: 5,
+    overflow : "hidden",
+    height : Dimensions.get("window").height * 0.3
   }
 })

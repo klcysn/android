@@ -2,8 +2,8 @@ import Axios from 'axios';
 import Modal from 'react-native-modal';
 import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {SafeAreaView, Text, View, FlatList, Button, TouchableOpacity} from 'react-native';
-
+import {SafeAreaView, Text, View, FlatList, Button, TouchableOpacity, ScrollView} from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import {jobs} from '../styles';
 import {JobItem} from '../components';
 
@@ -37,15 +37,20 @@ const Jobs = (props) => {
     let savedJobList = await AsyncStorage.getItem("@SAVED_JOBS");
     savedJobList = savedJobList == null ? [] : JSON.parse(savedJobList)
 
-    const updatedJobList = [...savedJobList, selectedJob];
-
-    AsyncStorage.setItem("@SAVED_JOBS", JSON.stringify(updatedJobList));
+    if(savedJobList.findIndex((item)=>item.id == selectedJob.id) != -1){
+      alert(`You have already add ${selectedJob.title}`)
+    }else{
+      const updatedJobList = [...savedJobList, selectedJob];
+  
+      AsyncStorage.setItem("@SAVED_JOBS", JSON.stringify(updatedJobList));
+    }
+    setModalFlag(false)
 
   }
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, alignItems : "center" }}>
         <Text
           style={{
             textAlign: 'center',
@@ -60,7 +65,7 @@ const Jobs = (props) => {
           style={{
             backgroundColor: 'blue',
             padding: 10,
-            borderRadius: 10,
+            borderRadius: 3,
             position: 'absolute',
             bottom: 10,
             right: 10
@@ -68,6 +73,18 @@ const Jobs = (props) => {
           onPress={() => props.navigation.navigate("SavedJobs")}
         >
           <Text style={{color: 'white'}}>Saved Jobs</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#304ffe',
+            padding: 5,
+            position: 'absolute',
+            top: 1,
+            left: 17
+          }}
+          onPress={() => props.navigation.navigate("Intro")}
+        >
+          <Text style={{color: 'white', fontWeight : "bold"}}>{`${"❮❮"} Languages`}</Text>
         </TouchableOpacity>
 
         <Modal isVisible={modalFlag} onBackdropPress={() => setModalFlag(false)}>
@@ -79,10 +96,10 @@ const Jobs = (props) => {
               </Text>
               <Text>{selectedJob.company}</Text>
             </View>
-            <View style={jobs.jobDesc}>
-              <Text numberOfLines={5}>{selectedJob.description}</Text>
-            </View>
-            <Button title="Kaydet" onPress={onJobSave} />
+            <ScrollView style={jobs.jobDesc}>
+              <HTMLView value={selectedJob.description}/>
+            </ScrollView>
+            <Button title="Save" onPress={onJobSave} />
           </View>
         </Modal>
       </View>
