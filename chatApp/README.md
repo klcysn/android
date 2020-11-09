@@ -1,0 +1,1 @@
+![FormatFactory Çoklama 20201109_212533+20201109_211559](https://user-images.githubusercontent.com/67810399/98593662-c3999c00-22d3-11eb-9698-5a5e27922b2a.gif)
