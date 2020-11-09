@@ -20,6 +20,7 @@ export const authStyle = StyleSheet.create({
 export const timelinePage = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#cfd8dc'
+    backgroundColor: '#cfd8dc',
+    paddingBottom : 65
   },
 });

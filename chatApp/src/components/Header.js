@@ -10,6 +10,9 @@ const Header = (props) => {
       <View style={header.textContainer}>
         <Text style={header.text}>#{props.title}</Text>
       </View>
+      <View style={header.textContainer}>
+        <Text style={[header.text,{fontSize : 20}]}>User : {props.user.split("@")[0].toUpperCase()}</Text>
+      </View>
       <View style={{justifyContent: 'center', flexDirection: 'row'}}>
         <Icon
           name="hexagon-multiple"

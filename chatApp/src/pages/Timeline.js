@@ -7,13 +7,13 @@ import {SafeAreaView, View, Text, FlatList,Alert} from 'react-native';
 import {timelinePage} from './styles';
 import {PostItem, PostInput, Header, TopicSelectModal} from '../components';
 
-const user = auth().currentUser;
+
 
 const Timeline = (props) => {
+  const user = auth().currentUser;
   const [postList, setPostList] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [topicModalFlag, setTopicModalFlag] = useState(true);
-  const myRef = useRef()
 
   const selectingTopic = (value) => {
     database().ref(`/${selectedTopic}/`).off('value');
@@ -25,13 +25,11 @@ const Timeline = (props) => {
         const data = snapshot.val() == null ? {} : snapshot.val();
         const formattedData = Object.keys(data).map((key) => ({...data[key]}));
         
-
         formattedData.sort((a, b) => {
           return new Date(a.time) - new Date(b.time);
         });
 
         setPostList(formattedData);
-        myRef.current.scrollToEnd()
       });
       
   };
@@ -40,13 +38,10 @@ const Timeline = (props) => {
     const postObject = {
       userMail: user.email,
       postText: value,
-      time: moment().toISOString()
+      time: moment().toISOString(),
     };
 
     database().ref(`${selectedTopic}`).push(postObject);
-    myRef.current.scrollToEnd()
-    
-    
   };
 
   const renderPosts = ({item}) => <PostItem
@@ -74,7 +69,6 @@ const Timeline = (props) => {
             return {...data}
           }
         });
-
         formattedData.sort((a, b) => {
           return new Date(a.time) - new Date(b.time);
         });
@@ -94,22 +88,22 @@ const Timeline = (props) => {
 
 
   return (
-    <SafeAreaView style={timelinePage.container}>
+    <SafeAreaView style={{flex : 1}}>
       <View style={timelinePage.container}>
         <Header
           title={selectedTopic}
+          user = {user.email}
           onTopicModalSelect={() => setTopicModalFlag(true)}
           onLogOut={() => auth().signOut()}
         />
 
         <FlatList
-          ref={myRef}
-          style={{ marginBottom : 150}}
+          style={{}}
           keyExtractor={(_, i) => i.toString()}
           data={postList}
           renderItem={renderPosts}
         />
-
+        
         <PostInput onSendPost={sendingPost} />
 
         <TopicSelectModal
