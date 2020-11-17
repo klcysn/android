@@ -6,13 +6,14 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {introPage} from './styles';
 import axios from 'axios';
 import {CategorySelectModal, TimerComponent} from '../components';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
 
 const Intro = (props) => {
+  const key = useSelector(state=>state.key)
   const [visibility, setVisibility] = useState(false)
   const [category, setCategory] = useState({})
   const [timerFlag, setTimerFlag] = useState(false)
@@ -36,9 +37,13 @@ const Intro = (props) => {
       <View style={{backgroundColor:"#3949ab",padding:0}}>
       <View style={{alignItems: "center"}}>
         <CountdownCircleTimer
+        key={key}
         isPlaying={timerFlag}
-        onComplete={()=>props.navigation.navigate("Questions")}
-        duration={5}
+        onComplete={()=> {
+          setTimerFlag(false)
+          props.navigation.navigate("Questions")
+        }}
+        duration={3}
         colors={[
           ["#fff176", 0.4],
           ["#ba68c8", 0.4],

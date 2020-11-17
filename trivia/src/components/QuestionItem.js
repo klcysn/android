@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, FlatList, Animated,} from 'react-native';
+import { useSelector } from 'react-redux';
+
 
 import {questionItem} from './styles';
 
 const QuestionItem = (props) => {
+  const key = useSelector(state=>state.questionKey)
   return (
     <View style={questionItem.container}>
+      
       <View style={{flex:1, justifyContent: "center"}}>
         <View style={questionItem.questionContainer}>
           <Text style={questionItem.questionText}>{props.questionObject.question}</Text>
         </View>
       </View>
-
-     
 
       <View style={questionItem.buttonContainer}>
         <TouchableOpacity

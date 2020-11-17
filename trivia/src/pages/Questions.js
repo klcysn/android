@@ -20,6 +20,7 @@ const [currentIndex, setCurrentIndex] = useState(1)
  const score = useSelector(state=>state.score)
  const renderQuestion =({item})=><QuestionItem questionObject={item} onAnswer={answer} />
  const dispatch = useDispatch()
+ const key = useSelector(state=>state.questionKey)
   const answer=(result)=>{
     dispatch({type: "SET_SCORE", payload:{score: result ? 1 : -1}})
     if(currentIndex >questionsList.length-1){
@@ -27,6 +28,7 @@ const [currentIndex, setCurrentIndex] = useState(1)
     }
     listRef.current.scrollToIndex({index: currentIndex})
     setCurrentIndex(currentIndex + 1)
+    dispatch({type:"SET_QUESTION_KEY"})
   }
  return (
     <SafeAreaView style={{flex: 1}}>
@@ -34,9 +36,10 @@ const [currentIndex, setCurrentIndex] = useState(1)
       <Text style={{position:"absolute", top:5,right:5,color:"white", fontSize : 20, fontWeight : "bold"}}>Score: {score}</Text>
       <View style={{alignItems: "center", paddingTop:30}}>
         <CountdownCircleTimer
+        key={key}
         isPlaying={true}
-        onComplete={()=>props.navigation.navigate("Finish")}
-        duration={20}
+        onComplete={()=> answer(false)}
+        duration={5}
         colors={[
           ["#fff176", 0.4],
           ["#ba68c8", 0.4],

@@ -7,6 +7,12 @@ export function reducer(state, action) {
     case 'SET_SCORE':
       state.score = state.score + action.payload.score
       return {...state};
+    case "SET_KEY":
+      state.key = state.key + 1
+      return {...state}
+      case "SET_QUESTION_KEY":
+        state.questionKey = state.questionKey + 1
+        return {...state}
 
     default:
       return state;
