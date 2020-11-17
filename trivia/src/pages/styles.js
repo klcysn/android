@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export const introPage = StyleSheet.create({
   container: {
@@ -33,8 +33,8 @@ export const finishPage = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 100,
+    fontSize: 70,
     textAlign: 'center',
-    fontFamily: 'IndieFlower-Regular'
+    fontFamily: 'Pacifico-Regular'
   }
 });

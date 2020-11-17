@@ -4,11 +4,10 @@ import {
   View,
   FlatList,
   Text,
-  Animated,
-  Button,
+  Animated
 } from 'react-native';
 import {useSelector, useDispatch} from "react-redux"
-import { QuestionItem,TimerComponent } from '../components';
+import { QuestionItem } from '../components';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
 
 

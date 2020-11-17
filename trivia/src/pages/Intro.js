@@ -19,7 +19,7 @@ const Intro = (props) => {
   const [timerFlag, setTimerFlag] = useState(false)
   const dispatch = useDispatch()
   const startGame = (item)=>{
-    axios.get(`https://opentdb.com/api.php?amount=10&category=${item.id}&type=boolean`)
+    axios.get(`https://opentdb.com/api.php?amount=10&category=${item.id}&type=boolean&encode=base64`)
     .then(res=>{
       dispatch({type:"SET_QUESTIONS",payload:{questions:res.data.results}})
     })
