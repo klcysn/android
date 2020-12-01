@@ -1,21 +1,28 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import {Home, Random} from "./pages"
+import {NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {StackRouter} from "./Router"
+import Unknown from "./pages/Unknown"
+import Learned from "./pages/Learned"
 
-const Stack = createStackNavigator();
-
+const Tab = createBottomTabNavigator();
 const App = () => {
   return (
-   <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Random" component={Random} />
-      </Stack.Navigator>
-   </NavigationContainer>
+    <NavigationContainer>
+      <Tab.Navigator 
+      tabBarOptions={{
+        activeBackgroundColor: "#b91400",
+        inactiveBackgroundColor: "#1c313a",
+        activeTintColor: "white",
+        labelStyle:{fontSize: 25}}}
+        >
+        <Tab.Screen name="Home" component={StackRouter} />
+        <Tab.Screen name="Unknown" component={Unknown} />
+        <Tab.Screen name="Learned" component={Learned} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
-
 
 export default App;
