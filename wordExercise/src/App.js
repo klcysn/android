@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {StackRouter} from "./Router"
 import Unknown from "./pages/Unknown"
 import Learned from "./pages/Learned"
-import Add from "./pages/Add"
+import AddPage from "./pages/AddPage"
 
 const Tab = createBottomTabNavigator();
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
         <Tab.Screen name="Home" component={StackRouter} />
         <Tab.Screen name="Unknown" component={Unknown} />
         <Tab.Screen name="Learned" component={Learned} />
-        <Tab.Screen name="Add Word" component={Add} />
+        <Tab.Screen name="Add Page" component={AddPage} />
       </Tab.Navigator>
     </NavigationContainer>
   );

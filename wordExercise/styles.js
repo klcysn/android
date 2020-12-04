@@ -84,8 +84,7 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "white",
     width: Dimensions.get("window").width * 0.9,
-    marginTop: 30,
-    fontSize: 30
+    marginVertical: 30,
   },
   addContainer: {
     flex: 1,

@@ -14,7 +14,7 @@ export const Home = (props) => {
         color="#b0003a"
         onPress={() => goPath('Random')}
       />
-      <Button title="Add Word" color="#320b86" />
+      <Button title="Add Word" color="#320b86" onPress={() =>goPath("Add")} />
     </SafeAreaView>
   );
 };

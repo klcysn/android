@@ -6,7 +6,7 @@ import styles from "../../styles"
 export const Input = (props) =>{
     return(
         <View style={styles.inputContainer}>
-            <TextInput placeholder={props.placeholder} />
+            <TextInput placeholder={props.placeholder} onChangeText={props.onChange} />
         </View>
     )
 }
