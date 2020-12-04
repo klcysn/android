@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {SafeAreaView, FlatList} from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RenderWord} from "../components"
+import { useIsFocused } from '@react-navigation/native';
 
 
 
@@ -10,6 +11,8 @@ const Unknown = (props) =>{
     const [isPressed, setPressed] = useState(false)
     const [pressedWord, setPressedWord] = useState()
     const [updatedList, setUpdatedList] = useState([])
+
+    const isFocused = useIsFocused();
     
     const getData = async () => {
         try {
@@ -21,7 +24,7 @@ const Unknown = (props) =>{
     }
     useEffect(()=>{
         getData()
-    },[updatedList])
+    },[updatedList, isFocused])
 
     const pressed = (text) => {
         setPressedWord(text)
