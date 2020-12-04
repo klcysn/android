@@ -8,8 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const words = WORD_LIST.WORDS;
 export const Random = (props) => {
   const [isClicked, setClicked] = useState(false);
-  const [unknownList, setUnknownList] = useState()
-  const [learnedList, setLearnedList] = useState()
+  const [unknownList, setUnknownList] = useState([])
+  const [learnedList, setLearnedList] = useState([])
   const [count, setCount] = useState(0);
   const clicked = () => {
     setClicked((s) => !s);
@@ -32,7 +32,7 @@ export const Random = (props) => {
   };
   const setLearned = async () => {
     try {
-      const learned = await AsyncStorage.getItem('@unknown')
+      const learned = await AsyncStorage.getItem('@learned')
       setLearnedList(learned != null ? JSON.parse(learned) : null);
       } catch(e) {
       alert(e)
@@ -48,7 +48,7 @@ export const Random = (props) => {
   const setUnknown = async () => {
     try {
       const unknownList = await AsyncStorage.getItem('@unknown')
-      setUnknownList(unknown != null ? JSON.parse(unknown) : null);
+      setUnknownList(unknownList != null ? JSON.parse(unknownList) : null);
       } catch(e) {
       alert(e)
       }

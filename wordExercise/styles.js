@@ -58,13 +58,39 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   wordContainer: {
-    backgroundColor: "#7f0000",
     padding: 10,
-    margin: 3
+    margin: 3,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   wordText: {
     color: "white",
     fontSize: 25
+  },
+  crossTextContainer:{
+    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 40,
+    height: 40,
+    borderRadius: 20
+  },
+  crossText: {
+    color: "white",
+    fontSize: 30
+  },
+  inputContainer: {
+    borderWidth: 1,
+    padding: 5,
+    backgroundColor: "white",
+    width: Dimensions.get("window").width * 0.9,
+    marginTop: 30,
+    fontSize: 30
+  },
+  addContainer: {
+    flex: 1,
+    justifyContent: "center",
+     alignItems: "center",
   }
 });
 

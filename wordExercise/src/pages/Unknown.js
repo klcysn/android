@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {SafeAreaView, Text, FlatList, TouchableOpacity} from "react-native"
-import styles from "../../styles"
+import {SafeAreaView, FlatList} from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RenderWord} from "../components"
+
+
 
 const Unknown = (props) =>{
     const [data, setData] = useState()
     const [isPressed, setPressed] = useState(false)
     const [pressedWord, setPressedWord] = useState()
+    const [updatedList, setUpdatedList] = useState([])
     
     const getData = async () => {
         try {
@@ -19,13 +21,28 @@ const Unknown = (props) =>{
     }
     useEffect(()=>{
         getData()
-    },[])
+    },[updatedList])
 
     const pressed = (text) => {
         setPressedWord(text)
         setPressed(s => !s)
     }
-        const renderItem = ({item}) => <RenderWord item={item} isPressed={pressedWord === item.word ? isPressed : false} onPress={pressed} />
+    const deleted = async (text) =>{
+        const filteredList = data.filter((item)=>item.word !== text)
+        setUpdatedList(filteredList)
+        try {
+            const jsonValue = JSON.stringify([...updatedList])
+            await AsyncStorage.setItem('@unknown', jsonValue)
+          } catch (e) {
+            alert(e)
+          }
+    }
+        const renderItem = ({item}) => <RenderWord
+        item={item}
+        isPressed={pressedWord === item.word ? isPressed : false}
+        onPress = {pressed}
+        onDelete = {deleted}
+        />
         return(
             <SafeAreaView>
                 <FlatList

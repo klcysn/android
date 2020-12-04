@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {StackRouter} from "./Router"
 import Unknown from "./pages/Unknown"
 import Learned from "./pages/Learned"
+import Add from "./pages/Add"
 
 const Tab = createBottomTabNavigator();
 const App = () => {
@@ -15,11 +16,12 @@ const App = () => {
         activeBackgroundColor: "#b91400",
         inactiveBackgroundColor: "#1c313a",
         activeTintColor: "white",
-        labelStyle:{fontSize: 25}}}
+        labelStyle:{fontSize: 18, padding: 5}}}
         >
         <Tab.Screen name="Home" component={StackRouter} />
         <Tab.Screen name="Unknown" component={Unknown} />
         <Tab.Screen name="Learned" component={Learned} />
+        <Tab.Screen name="Add Word" component={Add} />
       </Tab.Navigator>
     </NavigationContainer>
   );
